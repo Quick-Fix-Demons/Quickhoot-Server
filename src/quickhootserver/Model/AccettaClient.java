@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package quickhootserver;
-
-import java.util.ArrayList;
+package quickhootserver.Model;
 
 /**
  *
  * @author Alessio
  */
-public class Settings {
-    private ArrayList<String> domande;
-    private int port;
+public class AccettaClient {
     
 }
