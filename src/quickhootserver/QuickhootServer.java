@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Alessio
+ * @author Quick Fix Demons
  */
 public class QuickhootServer extends Application {
     

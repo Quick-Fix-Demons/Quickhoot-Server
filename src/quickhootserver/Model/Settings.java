@@ -10,19 +10,18 @@ import java.util.List;
 
 /**
  *
- * @author Alessio
+ * @author Quick Fix Demons
  */
 public class Settings {
-    private List<String> domande;
-    private int port;
-
+    public static final int PORT = 9991;
+    private static List<String> questions;
+    
     public Settings() {
-        this.domande = new ArrayList<>();
-        this.port = 9991;
+        this.questions = new ArrayList<>();
         
-        domande.add("Prova prima domanda");
-        domande.add("Prova seconda domanda");
-        domande.add("Prova terza domanda");
+        questions.add("Prova prima domanda");
+        questions.add("Prova seconda domanda");
+        questions.add("Prova terza domanda");
     }
     
 }
