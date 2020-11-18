@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package quickhootserver.Model;
+package Model;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,14 +17,18 @@ import java.util.List;
  * @author Quick Fix Demons
  */
 public class AccettaClient extends Thread {
+    private boolean exit;
 
-    public AccettaClient(String string) {
-        super(string);
+    public AccettaClient() {
+        this.exit = false;
     }
     
     @Override
     public void run() {
         try {
+            // Fare una classe utente
+            // Con socket, punti, nickname
+            
             ServerSocket serverSocket = new ServerSocket(Settings.PORT);
             System.out.println("Server up, running and listening");
             
@@ -34,7 +38,7 @@ public class AccettaClient extends Thread {
             List<String> utenti = new ArrayList<>();
             int i = 0;
             
-            while(true) {
+            while(!exit) {
                 listaSocket.add(serverSocket.accept());
                 
                 System.out.println("Numero di connessioni accettate: " + listaSocket.size());
@@ -46,6 +50,10 @@ public class AccettaClient extends Thread {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public void ferma() {
+        exit = true;
     }
     
 }

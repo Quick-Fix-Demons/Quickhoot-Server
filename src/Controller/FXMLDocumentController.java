@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package quickhootserver.Controller;
+package Controller;
 
+import Model.AccettaClient;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,22 +15,29 @@ import javafx.scene.control.Label;
 
 /**
  *
- * @author Alessio
+ * @author Quick Fix Demons
  */
 public class FXMLDocumentController implements Initializable {
+    AccettaClient thread;
     
     @FXML
     private Label label;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+        // Fine accettazione client
+        thread.ferma();
+        
+        // Parte fase due
+        // Far partire un thread che spara le domande
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        // Fase accettazione client
+        thread = new AccettaClient();
+        thread.start();
+        
+    } 
     
 }
