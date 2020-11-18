@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Model.AccettaClient;
+import Model.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -19,6 +19,8 @@ import javafx.scene.control.Label;
  */
 public class FXMLDocumentController implements Initializable {
     AccettaClient thread;
+    InviaDomande send;
+    AccettaRisposte receive;
     
     @FXML
     private Label label;
@@ -28,8 +30,10 @@ public class FXMLDocumentController implements Initializable {
         // Fine accettazione client
         thread.ferma();
         
-        // Parte fase due
-        // Far partire un thread che spara le domande
+        // Ricezione e invio domande e risposte
+        send.start();
+        receive.start();
+        
     }
     
     @Override

@@ -15,6 +15,7 @@ import java.util.List;
 public class Settings {
     public static final int PORT = 9991;
     private static List<Domanda> questions;
+    private int indiceDomanda;
     
     public Settings() {
         this.questions = new ArrayList<>();
@@ -27,6 +28,32 @@ public class Settings {
             "Risposta 4"
         }, 3));
         questions.add(new Domanda("Prova domanda 3", 30, true, 1));
+        
+        this.indiceDomanda = 0;
+    }
+
+    public List<Domanda> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Domanda> questions) {
+        Settings.questions = questions;
+    }
+
+    public int getIndiceDomanda() {
+        return indiceDomanda;
+    }
+
+    public void setIndiceDomanda(int indiceDomanda) {
+        this.indiceDomanda = indiceDomanda;
+    }
+    
+    public Domanda getDomandaAttuale() {
+        return this.questions.get(indiceDomanda);
+    }
+    
+    public void incrementaIndice() {
+        this.indiceDomanda++;
     }
     
 }

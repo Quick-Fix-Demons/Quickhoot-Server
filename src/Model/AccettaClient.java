@@ -18,7 +18,11 @@ import java.util.List;
  */
 public class AccettaClient extends Thread {
     private boolean exit;
-
+    private List<Socket> listaSocket;
+    private List<PrintWriter> output;
+    private List<AccettaRisposte> listaInoltra;
+    private List<Utente> utenti;
+    
     public AccettaClient() {
         this.exit = false;
     }
@@ -26,16 +30,15 @@ public class AccettaClient extends Thread {
     @Override
     public void run() {
         try {
-            // Fare una classe utente
-            // Con socket, punti, nickname
             
             ServerSocket serverSocket = new ServerSocket(Settings.PORT);
             System.out.println("Server up, running and listening");
             
-            List<Socket> listaSocket = new ArrayList<>();
-            List<PrintWriter> output = new ArrayList<>();
-            List<InoltraMessaggi> listaInoltra = new ArrayList<>();
-            List<String> utenti = new ArrayList<>();
+            listaSocket = new ArrayList<>();
+            output = new ArrayList<>();
+            listaInoltra = new ArrayList<>();
+            utenti = new ArrayList<>();
+            Settings impostazioni = new Settings();
             int i = 0;
             
             while(!exit) {
@@ -43,7 +46,7 @@ public class AccettaClient extends Thread {
                 
                 System.out.println("Numero di connessioni accettate: " + listaSocket.size());
                 output.add(new PrintWriter(listaSocket.get(i).getOutputStream(), true));
-                listaInoltra.add(new InoltraMessaggi("Utente" + i, listaSocket.get(i), output, utenti, i));
+                listaInoltra.add(new AccettaRisposte("Utente" + i, listaSocket.get(i), output, utenti, i, impostazioni));
                 listaInoltra.get(i).start();
                 i++;
             }
@@ -54,6 +57,38 @@ public class AccettaClient extends Thread {
     
     public void ferma() {
         exit = true;
+    }
+
+    public List<Socket> getListaSocket() {
+        return listaSocket;
+    }
+
+    public void setListaSocket(List<Socket> listaSocket) {
+        this.listaSocket = listaSocket;
+    }
+
+    public List<PrintWriter> getOutput() {
+        return output;
+    }
+
+    public void setOutput(List<PrintWriter> output) {
+        this.output = output;
+    }
+
+    public List<AccettaRisposte> getListaInoltra() {
+        return listaInoltra;
+    }
+
+    public void setListaInoltra(List<AccettaRisposte> listaInoltra) {
+        this.listaInoltra = listaInoltra;
+    }
+
+    public List<Utente> getUtenti() {
+        return utenti;
+    }
+
+    public void setUtenti(List<Utente> utenti) {
+        this.utenti = utenti;
     }
     
 }
