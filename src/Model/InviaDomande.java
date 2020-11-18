@@ -26,10 +26,8 @@ public class InviaDomande extends Thread {
     private List<Utente> utenti;
     private Settings impostazioni;
 
-    public InviaDomande(String name, Socket s, List<PrintWriter> out, List<Utente> users, int IDConnessione, Settings imp) {
-        super(name);
-        this.ID = IDConnessione;
-        this.socket = s;
+    public InviaDomande(List<PrintWriter> out, List<Utente> users, Settings imp) {
+        super();
         this.output = out;
         this.utenti = users;
         this.inseritoNome = false;
@@ -43,20 +41,24 @@ public class InviaDomande extends Thread {
                 send("Iniziamo con il gioco!");
             }
             else {
-                send("Ottimo lavoro, prossima domanda!");
+                send("Ottimo lavoro, prossima domanda!\n");
             }
             send("Domanda N." + (impostazioni.getIndiceDomanda() + 1) + ": " + d.getQuestion());
-            for(int i = 0; i< d.getRisposte().length; i++) {
-               send("Risposta #" + (impostazioni.getIndiceDomanda() + 1) + ": " + d.getRisposte()[i]);
+            if(!d.isTrueOrFalse()) {
+                for(int i = 0; i< d.getRisposte().length; i++) {
+                    send("Risposta #" + (i + 1) + ": " + d.getRisposte()[i]);
+                }
             }
             try {
                 Thread.sleep(d.getTempoRisposta() * 1000);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
+            System.out.println("Go next");
             impostazioni.incrementaIndice();
             
         }
+        send("Fine partita!\nClassifica: COMING SOON");
     }
     
     public void send(String msg) {

@@ -22,9 +22,12 @@ public class AccettaClient extends Thread {
     private List<PrintWriter> output;
     private List<AccettaRisposte> listaInoltra;
     private List<Utente> utenti;
+    private InviaDomande startGame;
+    Settings impostazioni;
     
     public AccettaClient() {
         this.exit = false;
+        impostazioni = new Settings();
     }
     
     @Override
@@ -38,7 +41,7 @@ public class AccettaClient extends Thread {
             output = new ArrayList<>();
             listaInoltra = new ArrayList<>();
             utenti = new ArrayList<>();
-            Settings impostazioni = new Settings();
+            
             int i = 0;
             
             while(!exit) {
@@ -57,6 +60,8 @@ public class AccettaClient extends Thread {
     
     public void ferma() {
         exit = true;
+        startGame = new InviaDomande(output, utenti, impostazioni);
+        startGame.start();
     }
 
     public List<Socket> getListaSocket() {

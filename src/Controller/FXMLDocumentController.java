@@ -31,8 +31,6 @@ public class FXMLDocumentController implements Initializable {
         thread.ferma();
         
         // Ricezione e invio domande e risposte
-        send.start();
-        receive.start();
         
     }
     
