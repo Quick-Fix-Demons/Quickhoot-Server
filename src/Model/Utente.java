@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author Alessio
+ * @author Quick Fix Demons
  */
 public class Utente {
     private String nickname;
@@ -47,6 +47,5 @@ public class Utente {
     public void setID(int ID) {
         this.ID = ID;
     }
-    
     
 }

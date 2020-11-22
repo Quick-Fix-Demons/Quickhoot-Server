@@ -20,14 +20,14 @@ public class Settings {
     public Settings() {
         this.questions = new ArrayList<>();
         
-        questions.add(new Domanda("Prova domanda 1", 20, true, 0));
-        questions.add(new Domanda("Prova domanda 2", 20, false, new String[] {
-            "Risposta 1",
-            "Risposta 2",
-            "Risposta 3",
-            "Risposta 4"
+        questions.add(new Domanda("\"Sommo\" è il cognome del sommo?", 20, true, 0));
+        questions.add(new Domanda("In quante persone hanno lavorato al progetto?", 20, false, new String[] {
+            "0",
+            "4",
+            "2",
+            "86"
         }, 0));
-        questions.add(new Domanda("Prova domanda 3", 30, true, 1));
+        questions.add(new Domanda("Tolve è un grande uomo.", 20, true, 1));
         
         this.indiceDomanda = 0;
     }
